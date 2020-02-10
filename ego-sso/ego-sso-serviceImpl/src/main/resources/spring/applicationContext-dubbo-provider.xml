@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://code.alibabatech.com/schema/dubbo
+http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--  提供方应用信息，用于计算依赖关系，不要与消费方中的 name 相同  -->
+    <dubbo:application name="ego-sso-provider"/>
+    <!--  指定注册中心  -->
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>
+    <!--  暴露服务端口 payload 用于指定接口之间传输数据的最大值 单位为 Byte -->
+    <dubbo:protocol name="dubbo" port="${dubbo.port}" payload="${dubbo.payload}"/>
+    <dubbo:service interface="com.ego.service.SSOServiceI" ref="ssoService"/>
+    <!-- 通过spring装配service -->
+    <bean id="ssoService" class="com.ego.service.impl.SSOServiceImpl"></bean>
+
+</beans>

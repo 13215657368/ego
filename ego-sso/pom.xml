@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ego-parent</artifactId>
+        <groupId>com.ego</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ego-sso</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>ego-sso-pojo</module>
+        <module>ego-sso-mapper</module>
+        <module>ego-sso-service</module>
+        <module>ego-sso-serviceImpl</module>
+    </modules>
+
+    <dependencies>
+        <!-- ego-common 依赖  -->
+        <dependency>
+            <groupId>com.ego</groupId>
+            <artifactId>ego-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <!-- build 标签 常用于添加插件及编译配置  -->
+    <build>
+        <!--  读取配置文件  -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.tld</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
+
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://code.alibabatech.com/schema/dubbo
+http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--  提供方应用信息，用于计算依赖关系，不要与消费方中的 name 相同  -->
+    <dubbo:application name="ego-sso-provider"/>
+    <!--  指定注册中心  -->
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>
+    <!--  暴露服务端口 payload 用于指定接口之间传输数据的最大值 单位为 Byte -->
+    <dubbo:protocol name="dubbo" port="${dubbo.port}" payload="${dubbo.payload}"/>
+    <!--  通过 spring 装配 service -->
+    <bean id="helloService" class="com.ego.service.impl.HelloServiceImpl"></bean>
+    <bean id="goodsCategoryService" class="com.ego.service.impl.GoodsCategoryServiceImpl"></bean>
+    <bean id="SearchService"  class="com.ego.service.impl.SearchServiceImpl" ></bean>
+    <bean id="CartService"  class="com.ego.service.impl.CartServiceImpl" ></bean>
+    <bean id="SendMailService"  class="com.ego.service.impl.SendMailServiceImpl" ></bean>
+
+    <!--  声明暴露的服务接口  -->
+    <dubbo:service interface="com.ego.service.HelloServiceI" ref="helloService"/>
+    <dubbo:service interface="com.ego.service.GoodsCategoryServiceI" ref="goodsCategoryService"/>
+    <dubbo:service interface="com.ego.service.SearchServiceI" ref="SearchService"/>
+    <dubbo:service interface="com.ego.service.CartServiceI" ref="CartService"/>
+    <dubbo:service interface="com.ego.service.SendMailServiceI" ref="SendMailService"/>
+
+</beans>

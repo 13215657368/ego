@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ego-portal</artifactId>
+        <groupId>com.ego</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>ego-portal-web</artifactId>
+    <packaging>war</packaging>
+    <name>ego-portal-web Maven Webapp</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <!-- dubbo-provider 依赖  -->
+        <dependency>
+            <groupId>com.ego</groupId>
+            <artifactId>ego-rpc-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ego</groupId>
+            <artifactId>ego-sso-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- ego-portal-service 依赖  -->
+        <dependency>
+            <groupId>com.ego</groupId>
+            <artifactId>ego-portal-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- spring 依赖  -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <!-- jsp 相关依赖  -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <!-- servlet api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Json 处理相关依赖  -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <!--  文件上传组件  -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+    </dependencies>
+    <!-- build 标签 常用于添加插件及编译配置  -->
+    <build>
+        <!--  编译配置 指定 finalName 用于指定打包的包名  -->
+        <finalName>ego-portal-web</finalName>
+        <plugins>
+            <!--  添加 maven jetty 插件  -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.14.v20181114</version>
+                <configuration>
+                    <!--  端口号  -->
+                    <httpConnector>
+                        <port>9091</port>
+                    </httpConnector>
+                    <!--  项目访问路径  -->
+                    <webApp>
+                        <contextPath>/ego-portal-web</contextPath>
+                    </webApp>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
+</project>

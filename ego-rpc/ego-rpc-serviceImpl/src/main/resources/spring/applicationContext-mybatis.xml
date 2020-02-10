@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 加载属性文件 -->
+    <context:property-placeholder location="classpath:properties/*.properties"/>
+    
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+    	<!-- 使用Druid无需配置driver，会自动的根据url得到driver -->
+    	<!-- 配置url ${jdbc.url}从属性文件获取 -->
+    	<property name="url" value="${jdbc.url}"/>
+    	<!-- 配置用户名 -->
+    	<property name="username" value="${jdbc.username}"/>
+    	<!-- 配置数据库密码 -->
+    	<property name="password" value="${jdbc.password}"/>
+    </bean>
+    
+    <!-- 配置SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="configLocation" value="classpath:mybatis/config.xml"/>
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <!-- 配置自动扫描mybatis Mapper.java Mapper.xml -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<!-- 扫描包 -->
+    	<property name="basePackage" value="com.ego.mapper" />
+    	<!-- sqlSessionFactoryBeanName是批factory的名称 此处使用value，而不是ref -->
+    	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+</beans>

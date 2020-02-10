@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费方应用名，用于计算依赖关系，不要与提供方中的name相同 -->
+    <dubbo:application name="ego-portal-consumer"/>
+
+    <!-- 指定注册中心 -->
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>
+
+
+    <!-- 声明需要调用的接口，远程服务代理 -->
+    <!-- timeout="10000"超时时间，如果不设置默认1秒，消费者1秒内调度不到提供者就会报错 -->
+    <dubbo:reference id="helloService" interface="com.ego.service.HelloServiceI" timeout="30000"/>
+    <dubbo:reference id="goodsCategoryService" interface="com.ego.service.GoodsCategoryServiceI" timeout="30000"/>
+    <dubbo:reference id="searchService" interface="com.ego.service.SearchServiceI" timeout="30000"/>
+    <dubbo:reference id="ssoService" interface="com.ego.service.SSOServiceI" timeout="30000"/>
+    <dubbo:reference id="cartService" interface="com.ego.service.CartServiceI" timeout="30000"/>
+
+</beans>
