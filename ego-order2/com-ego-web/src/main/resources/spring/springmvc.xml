@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 启用spring mvc 注解 -->
+    <!-- <context:annotation-config /> -->
+    <mvc:annotation-driven/>
+
+    <!-- 设置使用注解的类所在的package(基本包)-->
+    <context:component-scan base-package="com.ego.controller"/>
+
+    <!-- 静态资源映射 location是本地静态资源路径 mapping是映射的url地址，访问时就使用该地址 -->
+    <mvc:resources location="/WEB-INF/static/" mapping="/**"/>
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置前缀 -->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <!-- 配置后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码试 -->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 最大文件上传大小 -->
+        <property name="maxUploadSize" value="10485760"/>
+    </bean>
+
+    <!-- 配置访问根路径对应资源操作 -->
+    <!-- 其中path表示为请求的路径，view-name表示为你需要做的资源操作 -->
+    <mvc:view-controller path="/" view-name="index"/>
+
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <ref bean="orderCommonInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!-- 拦截的路径 -->
+            <mvc:mapping path="/**"/>
+            <!-- 不拦截的路径 -->
+            <!-- 不拦截的url(不需要登录就可以访问的资源) -->
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <ref bean="orderLoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>
