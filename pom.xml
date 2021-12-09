@@ -44,7 +44,7 @@
         <!-- slf4j依赖 -->
         <slf4j-log4j12.version>1.7.22</slf4j-log4j12.version>
         <!-- json相关依赖 -->
-        <jackson.version>2.8.5</jackson.version>
+        <jackson.version>2.9.10.8</jackson.version>
         <!-- 数据库连接池相关依赖 -->
         <druid.version>1.0.27</druid.version>
         <!-- mysql依赖 -->
