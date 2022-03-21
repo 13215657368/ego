@@ -75,7 +75,7 @@
 
 
         <!-- dubbo 依赖  -->
-        <dubbo-version>2.6.0</dubbo-version>
+        <dubbo-version>2.6.9</dubbo-version>
         <!-- zookeeper 依赖  -->
         <zookeeper-version>3.4.13</zookeeper-version>
         <!-- zkclient 依赖  -->
