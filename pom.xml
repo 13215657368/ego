@@ -48,7 +48,7 @@
         <!-- 数据库连接池相关依赖 -->
         <druid.version>1.0.27</druid.version>
         <!-- mysql依赖 -->
-        <mysql.version>5.1.8</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <!-- 分页工具依赖 -->
         <pagehelper.version>4.1.6</pagehelper.version>
         <!-- 文件上传依赖 -->
