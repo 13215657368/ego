@@ -29,7 +29,7 @@
         <!-- junit依赖 -->
         <junit.version>4.12</junit.version>
         <!-- spring依赖 -->
-        <spring-version>4.3.4.RELEASE</spring-version>
+        <spring-version>5.2.20.RELEASE</spring-version>
         <!-- hibernate数据验证框架依赖 -->
         <hibernate-validator.version>5.3.3.Final</hibernate-validator.version>
         <!-- spring-mybatis依赖 -->
